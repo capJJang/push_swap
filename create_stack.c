@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 21:54:09 by segan             #+#    #+#             */
-/*   Updated: 2022/10/20 21:47:00 by segan            ###   ########.fr       */
+/*   Created: 2022/10/20 21:47:18 by segan             #+#    #+#             */
+/*   Updated: 2022/10/20 21:53:14 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	main(int argc, char *argv[])
+long	*create_stack(long *stack_a)
 {
-	long	*stack_a;
+	int		size;
 	long	*stack_b;
 
-	stack_a = parse_argv(argc, argv);
-	validation(stack_a);
-	stack_b = create_stack(stack_a);
+	size = 0;
+	while (stack_a[size] == END)
+		size++;
+	stack_b = (long *)malloc(sizeof(long) * size);
+	stack_b[0] = START;
+	stack_b = END;
+	return (stack_b);
 }

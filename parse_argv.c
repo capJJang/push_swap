@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:14:56 by segan             #+#    #+#             */
-/*   Updated: 2022/10/20 21:20:45 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/20 21:35:25 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ long	*parse_argv(int argc, char **argv)
 		ret[0] = START;
 		while (i < argc)
 		{
-			ret[i - 1] = ft_atol(argv[i]);
-			if (ret[i - 1] != (int)ret[i - 1] || ft_isdigit(*argv[i++]) == 0)
+			ret[i] = ft_atol(argv[i]);
+			if (ret[i] != (int)ret[i] || ft_isdigit(*argv[i++]) == 0)
 				print_error();
 		}
 		ret[i] = END;
 	}
 	else
-		exit(-1);
+		print_error();
 	return (ret);
 }

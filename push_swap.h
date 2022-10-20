@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/20 20:59:28 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/20 21:48:02 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	free_2darr(char **temp);
 void	print_error(void);
 int		ft_isdigit(int c);
 void	validation(long *stack_a);
+long	*create_stack(long *stack_a);
 
 #endif

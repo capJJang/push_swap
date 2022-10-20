@@ -6,7 +6,7 @@
 #    By: segan <segan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/19 21:50:22 by segan             #+#    #+#              #
-#    Updated: 2022/10/20 20:55:58 by segan            ###   ########.fr        #
+#    Updated: 2022/10/20 21:48:35 by segan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -o
 
-SRCS = main.c parse_argv.c print_error.c validation.c ft_atol.c
+SRCS = main.c parse_argv.c print_error.c validation.c ft_atol.c create_stack.c
 
 STATICLIB_PATH = ./libft
 
