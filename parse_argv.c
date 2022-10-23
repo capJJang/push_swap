@@ -6,11 +6,10 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:14:56 by segan             #+#    #+#             */
-/*   Updated: 2022/10/20 21:35:25 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/22 01:39:02 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "push_swap.h"
 
 int	measure_column(char *argv[])
@@ -84,6 +83,6 @@ long	*parse_argv(int argc, char **argv)
 		ret[i] = END;
 	}
 	else
-		print_error();
+		exit(0);
 	return (ret);
 }
