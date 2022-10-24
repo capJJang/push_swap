@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:14:56 by segan             #+#    #+#             */
-/*   Updated: 2022/10/22 01:39:02 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/24 01:08:20 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,15 @@ long	*convert_arr(char **argv)
 
 	i = 0;
 	len = measure_column(argv);
-	ret = (long *)malloc(sizeof(long) * (len + 2));
-	ret[i] = START;
+	ret = (long *)malloc(sizeof(long) * (len + 1));
 	while (argv[i])
 	{
-		ret[i + 1] = ft_atol(argv[i]);
-		if (ret[i + 1] != (int)ret[i + 1] || ft_isdigit(*argv[i]) == 0)
+		ret[i] = ft_atol(argv[i]);
+		if (ret[i] != (int)ret[i] || ft_isdigit(*argv[i++]) == 0)
 			print_error();
-		i++;
 	}
 	free_2darr(argv);
-	ret[i + 1] = END;
+	ret[i] = END;
 	return (ret);
 }
 
@@ -64,7 +62,7 @@ long	*parse_argv(int argc, char **argv)
 	char	**temp_argv;
 	long	*ret;
 
-	i = 1;
+	i = 0;
 	if (argc == 2)
 	{
 		temp_argv = ft_split(argv[1], ' ');
@@ -72,12 +70,11 @@ long	*parse_argv(int argc, char **argv)
 	}
 	else if (argc >= 3)
 	{
-		ret = (long *)malloc(sizeof(long) * (argc + 1));
-		ret[0] = START;
-		while (i < argc)
+		ret = (long *)malloc(sizeof(long) * argc);
+		while (i < argc - 1)
 		{
-			ret[i] = ft_atol(argv[i]);
-			if (ret[i] != (int)ret[i] || ft_isdigit(*argv[i++]) == 0)
+			ret[i] = ft_atol(argv[i + 1]);
+			if (ret[i] != (int)ret[i] || ft_isdigit(*argv[++i]) == 0)
 				print_error();
 		}
 		ret[i] = END;

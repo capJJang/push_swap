@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 21:47:18 by segan             #+#    #+#             */
-/*   Updated: 2022/10/22 01:45:38 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/24 00:52:32 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	stacksize(long *stack)
 	size = 0;
 	while (stack[size] != END && stack[size] != LONG_MIN)
 		size++;
-	return (size - 1);
+	return (size);
 }
 
 long	*create_stack(long *stack_a)
@@ -30,10 +30,9 @@ long	*create_stack(long *stack_a)
 	int		i;
 
 	size = stacksize(stack_a);
-	stack_b = (long *)malloc(sizeof(long) * (size + 2));
-	*stack_b = START;
-	i = 1;
-	while (i <= size)
+	stack_b = (long *)malloc(sizeof(long) * (size + 1));
+	i = 0;
+	while (i < size)
 		stack_b[i++] = LONG_MIN;
 	stack_b[i] = END;
 	return (stack_b);

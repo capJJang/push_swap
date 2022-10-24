@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 18:06:54 by segan             #+#    #+#             */
-/*   Updated: 2022/10/20 21:47:56 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/24 00:41:35 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	validation(long *stack_a)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (stack_a[i] != END)
 	{
 		j = i + 1;
