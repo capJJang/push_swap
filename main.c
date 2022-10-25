@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:09 by segan             #+#    #+#             */
-/*   Updated: 2022/10/24 09:30:18 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/25 17:57:59 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	main(int argc, char *argv[])
 	for (size_t i = 0; stack_a[i] != END; i++)
 		printf ("%ld\t\t %ld\n", stack_a[i], stack_b[i]);
 	printf("\n\n");
-	sort_stack(stack_a, stack_b);
+	make_lis(stack_a);
+	for (size_t i = 0; stack_a[i] != END; i++)
+		printf ("%ld\t\t %ld\n", stack_a[i], stack_b[i]);
 	free(stack_a);
 	free(stack_b);
 	return (0);

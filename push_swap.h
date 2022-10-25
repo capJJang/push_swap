@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/24 09:59:03 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:15:27 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ void	reverse_rotate(long *stack);
 void	rra(long *stack_a);
 void	rrb(long *stack_b);
 void	rrr(long *stack_a, long *stack_b);
+long	*make_lis(long *stack_a);
+void	pull_min_val_to_top(long *stack_a);
+int		get_index(long *arr, int value);
+int		min(int a, int b);
+int		max(int a, int b);
 
 #endif
