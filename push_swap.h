@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/25 18:15:27 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/26 20:20:25 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	pull_min_val_to_top(long *stack_a);
 int		get_index(long *arr, int value);
 int		min(int a, int b);
 int		max(int a, int b);
+int		*get_lis(long *stack_a);
+int		*get_real_lis(int *lis, int *dp, long *stack_a);
+void	free_arr(int *arr1, int *arr2);
 
 #endif
