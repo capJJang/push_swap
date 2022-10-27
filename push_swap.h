@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/26 20:20:25 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/27 18:31:30 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ long	*create_stack(long *stack_a);
 void	push(long *stack, long data);
 long	pop(long *stack);
 void	pa(long *stack_a, long *stack_b);
-void	pb(long *stack_b, long *stack_a);
+void	pb(long *stack_a, long *stack_b);
 void	sa(long *stack_a);
 void	sb(long *stack_b);
 void	ss(long *stack_a, long *stack_b);
@@ -44,13 +44,14 @@ void	reverse_rotate(long *stack);
 void	rra(long *stack_a);
 void	rrb(long *stack_b);
 void	rrr(long *stack_a, long *stack_b);
-long	*make_lis(long *stack_a);
+void	make_lis(long *stack_a, long *stack_b);
 void	pull_min_val_to_top(long *stack_a);
 int		get_index(long *arr, int value);
 int		min(int a, int b);
 int		max(int a, int b);
-int		*get_lis(long *stack_a);
-int		*get_real_lis(int *lis, int *dp, long *stack_a);
-void	free_arr(int *arr1, int *arr2);
+long	*get_lis(long *stack_a);
+long	*get_real_lis(long *lis, long *dp, long *stack_a);
+void	free_arr(long *arr1, long *arr2);
+void	make_stack_a_to_lis(long *stack_a, long *stack_b, long *lis);
 
 #endif
