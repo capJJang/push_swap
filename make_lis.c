@@ -6,54 +6,55 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/10/26 20:26:39 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/27 19:38:21 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	*get_real_lis(int *lis_index, int *dp, long *stack_a)
+long	*get_real_lis(long *lis_index, long *dp, long *stack_a)
 {
-	int	i;
-	int	max;
-	int	from;
-	int	j;
-	int	*real_lis;
+	int		i;
+	int		max;
+	int		from;
+	int		size;
+	long	*real_lis;
 
-	i = 0;
+	i = -1;
 	max = 0;
-	real_lis = (int *)malloc(sizeof(dp) / sizeof(*dp));
-	while (i < sizeof(dp) / sizeof(*dp))
+	size = stacksize(stack_a);
+	real_lis = (long *)malloc(sizeof(long) * (size + 1));
+	while (++i < size)
 	{
 		if (dp[i] > max)
 			max = dp[i];
-		i++;
 	}
+	real_lis[max] = END;
 	while (max != 0)
 	{
 		from = get_index(dp, max);
-		real_lis[max] = stack_a[from];
+		real_lis[max - 1] = stack_a[from];
+		max--;
 	}
 	real_lis[0] = stack_a[0];
 	free_arr(lis_index, dp);
 	return (real_lis);
 }
 
-//dp배열 내부의 최대값을 찾음
-//최대값
-
-int	*get_lis(long *stack_a)
+long	*get_lis(long *stack_a)
 {
 	int		i;
 	int		j;
+	int		size;
 	long	*lis_index;
-	int		*dp;
+	long	*dp;
 
-	lis_index = (int *)malloc(sizeof(int) * sizeof(stack_a) / sizeof(*stack_a));
-	dp = (int *)malloc(sizeof(int) * sizeof(stack_a) / sizeof(*stack_a));
+	size = stacksize(stack_a);
+	lis_index = (long *)malloc(sizeof(long) * size);
+	dp = (long *)malloc(sizeof(long) * (size + 1));
 	i = -1;
-	while (++i < sizeof(stack_a) / sizeof(*stack_a))
+	while (++i < size)
 	{
 		j = -1;
 		dp[i] = 1;
@@ -66,6 +67,7 @@ int	*get_lis(long *stack_a)
 			}
 		}
 	}
+	dp[i] = END;
 	return (get_real_lis(lis_index, dp, stack_a));
 }
 
@@ -97,13 +99,11 @@ void	pull_min_val_to_top(long *stack_a)
 			ra(stack_a);
 }
 
-long	*make_lis(long *stack_a)
+void	make_lis(long *stack_a, long *stack_b)
 {
-	int	*lis;
+	long	*lis;
 
 	pull_min_val_to_top(stack_a);
 	lis = get_lis(stack_a);
-	for(int i = 0; i < sizeof(lis) / sizeof(*lis); i++)
-		printf("%d \t", lis[i]);
-	return (stack_a);
+	make_stack_a_to_lis(stack_a, stack_b, lis);
 }
