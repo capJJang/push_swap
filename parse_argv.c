@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:14:56 by segan             #+#    #+#             */
-/*   Updated: 2022/10/24 01:08:20 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/29 04:49:13 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ long	*convert_arr(char **argv)
 	while (argv[i])
 	{
 		ret[i] = ft_atol(argv[i]);
-		if (ret[i] != (int)ret[i] || ft_isdigit(*argv[i++]) == 0)
+		if (ret[i] != (int)ret[i] || ft_isalpha(*argv[i++]) == 1)
 			print_error();
 	}
 	free_2darr(argv);
@@ -74,7 +74,7 @@ long	*parse_argv(int argc, char **argv)
 		while (i < argc - 1)
 		{
 			ret[i] = ft_atol(argv[i + 1]);
-			if (ret[i] != (int)ret[i] || ft_isdigit(*argv[++i]) == 0)
+			if (ret[i] != (int)ret[i] || ft_isalpha(*argv[++i]) == 1)
 				print_error();
 		}
 		ret[i] = END;
