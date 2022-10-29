@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:39:23 by segan             #+#    #+#             */
-/*   Updated: 2022/10/29 03:24:57 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/30 01:45:44 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	make_stack_a_to_lis(long *stack_a, long *stack_b, long *lis)
 		{
 			ra(stack_a);
 			rotate(lis);
-			lis_size--;
 		}
 		else
 			pb(stack_a, stack_b);

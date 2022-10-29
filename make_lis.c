@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/10/27 19:38:21 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/30 03:44:22 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ long	*get_real_lis(long *lis_index, long *dp, long *stack_a)
 			max = dp[i];
 	}
 	real_lis[max] = END;
-	while (max != 0)
+	from = get_index(dp, max);
+	while (from != 0)
 	{
-		from = get_index(dp, max);
 		real_lis[max - 1] = stack_a[from];
+		from = lis_index[from];
 		max--;
 	}
 	real_lis[0] = stack_a[0];
@@ -52,7 +53,7 @@ long	*get_lis(long *stack_a)
 
 	size = stacksize(stack_a);
 	lis_index = (long *)malloc(sizeof(long) * size);
-	dp = (long *)malloc(sizeof(long) * (size + 1));
+	dp = (long *)malloc(sizeof(long) * size);
 	i = -1;
 	while (++i < size)
 	{
@@ -67,7 +68,6 @@ long	*get_lis(long *stack_a)
 			}
 		}
 	}
-	dp[i] = END;
 	return (get_real_lis(lis_index, dp, stack_a));
 }
 
@@ -77,16 +77,15 @@ void	pull_min_val_to_top(long *stack_a)
 	int	min_index;
 	int	i;
 
-	i = 0;
+	i = -1;
 	min = INT_MAX;
-	while (stack_a[i] != END)
+	while (stack_a[++i] != END)
 	{
 		if (stack_a[i] < min)
 		{
 			min = stack_a[i];
 			min_index = i;
 		}
-		i++;
 	}
 	if (stacksize(stack_a) - min_index < min_index)
 	{
@@ -95,8 +94,10 @@ void	pull_min_val_to_top(long *stack_a)
 			rra(stack_a);
 	}
 	else
+	{
 		while (min_index--)
 			ra(stack_a);
+	}
 }
 
 void	make_lis(long *stack_a, long *stack_b)

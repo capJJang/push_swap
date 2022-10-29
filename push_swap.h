@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/27 18:31:30 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/30 01:11:54 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		measure_column(char *argv[]);
 long	*convert_arr(char **argv);
 void	free_2darr(char **temp);
 void	print_error(void);
-int		ft_isdigit(int c);
+int		ft_isalpha(int c);
 void	validation(long *stack_a);
 int		stacksize(long *stack);
 long	*create_stack(long *stack_a);
@@ -53,5 +53,7 @@ long	*get_lis(long *stack_a);
 long	*get_real_lis(long *lis, long *dp, long *stack_a);
 void	free_arr(long *arr1, long *arr2);
 void	make_stack_a_to_lis(long *stack_a, long *stack_b, long *lis);
+void	pa_with_optim(long *stack_a, long *stack_b);
+int		is_sorted(long *stack);
 
 #endif
