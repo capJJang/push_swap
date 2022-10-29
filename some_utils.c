@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:10:58 by segan             #+#    #+#             */
-/*   Updated: 2022/10/27 14:28:56 by segan            ###   ########.fr       */
+/*   Updated: 2022/10/30 00:56:29 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	get_index(long *arr, int value)
 
 	len = stacksize(arr);
 	i = 0;
-	while (i < len)
+	while (len--)
 	{
-		if (arr[i] == value)
-			return (i);
+		if (arr[len] == value)
+			return (len);
 		i++;
 	}
 	return (-1);
