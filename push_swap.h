@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/10/30 01:11:54 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/04 12:00:01 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ int		get_index(long *arr, int value);
 int		min(int a, int b);
 int		max(int a, int b);
 long	*get_lis(long *stack_a);
+void	update_dp_index(long *dp, long *lis_index, int i, int j);
 long	*get_real_lis(long *lis, long *dp, long *stack_a);
 void	free_arr(long *arr1, long *arr2);
 void	make_stack_a_to_lis(long *stack_a, long *stack_b, long *lis);
-void	pa_with_optim(long *stack_a, long *stack_b);
 int		is_sorted(long *stack);
+void	pa_with_optim(long *stack_a, long *stack_b);
 
 #endif

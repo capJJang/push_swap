@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/10/30 03:44:22 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/04 13:28:42 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ long	*get_real_lis(long *lis_index, long *dp, long *stack_a)
 	from = get_index(dp, max);
 	while (from != 0)
 	{
-		real_lis[max - 1] = stack_a[from];
+		real_lis[--max] = stack_a[from];
 		from = lis_index[from];
-		max--;
 	}
 	real_lis[0] = stack_a[0];
 	free_arr(lis_index, dp);
@@ -53,7 +52,7 @@ long	*get_lis(long *stack_a)
 
 	size = stacksize(stack_a);
 	lis_index = (long *)malloc(sizeof(long) * size);
-	dp = (long *)malloc(sizeof(long) * size);
+	dp = (long *)malloc(sizeof(long) * (size + 1));
 	i = -1;
 	while (++i < size)
 	{
@@ -62,12 +61,10 @@ long	*get_lis(long *stack_a)
 		while (++j < i)
 		{
 			if (stack_a[j] < stack_a[i])
-			{
-				dp[i] = max(dp[i], dp[j] + 1);
-				lis_index[i] = j;
-			}
+				update_dp_index(dp, lis_index, i, j);
 		}
 	}
+	dp[i] = END;
 	return (get_real_lis(lis_index, dp, stack_a));
 }
 
@@ -94,10 +91,8 @@ void	pull_min_val_to_top(long *stack_a)
 			rra(stack_a);
 	}
 	else
-	{
 		while (min_index--)
 			ra(stack_a);
-	}
 }
 
 void	make_lis(long *stack_a, long *stack_b)

@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:09 by segan             #+#    #+#             */
-/*   Updated: 2022/10/30 01:45:42 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/03 11:48:44 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 	make_lis(stack_a, stack_b);
 	for (size_t i = 0; stack_a[i] != END; i++)
 		printf ("%ld\t\t %ld\n", stack_a[i], stack_b[i]);
+	//pa_with_optim(stack_a, stack_b);
 	printf("\n\n");
 	free(stack_a);
 	free(stack_b);
