@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/11/04 13:28:42 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/05 10:58:50 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ long	*get_lis(long *stack_a)
 	return (get_real_lis(lis_index, dp, stack_a));
 }
 
-void	pull_min_val_to_top(long *stack_a)
+void	pull_min_val_to_top(long *stack)
 {
 	int	min;
 	int	min_index;
@@ -76,23 +76,23 @@ void	pull_min_val_to_top(long *stack_a)
 
 	i = -1;
 	min = INT_MAX;
-	while (stack_a[++i] != END)
+	while (stack[++i] != END)
 	{
-		if (stack_a[i] < min)
+		if (stack[i] < min)
 		{
-			min = stack_a[i];
+			min = stack[i];
 			min_index = i;
 		}
 	}
-	if (stacksize(stack_a) - min_index < min_index)
+	if (stacksize(stack) - min_index < min_index)
 	{
-		min_index = stacksize(stack_a) - min_index;
+		min_index = stacksize(stack) - min_index;
 		while (min_index--)
-			rra(stack_a);
+			rra(stack);
 	}
 	else
 		while (min_index--)
-			ra(stack_a);
+			ra(stack);
 }
 
 void	make_lis(long *stack_a, long *stack_b)
