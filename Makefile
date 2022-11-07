@@ -6,7 +6,7 @@
 #    By: segan <segan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/19 21:50:22 by segan             #+#    #+#              #
-#    Updated: 2022/10/29 23:30:48 by segan            ###   ########.fr        #
+#    Updated: 2022/11/07 14:26:26 by segan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ $(NAME) :
 
 clean :
 	make clean -C libft
-	make -C libft
 
 fclean :
 	make fclean -C libft
 	rm -f $(NAME)
+	rm -rf $(NAME).dSYM
 
 re :
 	make fclean
