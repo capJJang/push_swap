@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/09 18:21:16 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/09 19:32:44 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ int	where_to_put_val(long *stack_a, long value)
 	{
 		if ((state == 1) && (value < stack_a[i]))
 			break ;
-		if ((state == 1) && (value > stack_a[i]))
-			state = 0;
 		if (value > stack_a[i])
 			state = 1;
 		i++;
 	}
+	if (state == 1)
+		i = 0;
 	if (i == size)
 		i--;
 	if (i <= size / 2)
