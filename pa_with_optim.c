@@ -6,53 +6,36 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/07 14:20:53 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/08 18:38:30 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"push_swap.h"
+#include "push_swap.h"
 
 void	pa_with_optim(long *stack_a, long *stack_b)
 {
-	int	*mov_a;
-	int	*mov_b;
-	int	min_idx;
-	int	count;
+	t_optim_info	*optim_info;
 
+	optim_info = (t_optim_info *)malloc(sizeof(t_optim_info));
 	while (*stack_b == LONG_MIN)
 	{
-		mov_b = get_b_mov(stack_b);
-		mov_a = get_a_mov(stack_a, stack_b);
-		min_idx = best_elem_to_mov(mov_a, mov_b, stacksize(stack_b));
-		count = 0;
-		if (mov_a[min_idx] * mov_b[min_idx] > 0)
-		{
-			if (mov_a[min_idx] > 0)
-			{
-				count = mov_a[min_idx] - mov_b[min_idx];
-				while (count--)
-					rr(stack_a, stack_b);
-			}
-			else
-			{
-				count = ft_abs(mov_a[min_idx] - mov_b[min_idx]);
-				while (count--)
-					rrr(stack_a, stack_b);
-			}
-		}
+		optim_info->mov_b = get_b_mov(stack_b);
+		optim_info->mov_a = get_a_mov(stack_a, stack_b);
+		optim_info->min_mov_idx = pick_elem(optim_info, stacksize(stack_b));
+		optim_roate(stack_a, stack_b, optim_info);
+		real_pa(stack_a, stack_b, optim_info);
 	}
-	free_arr((long *)mov_a, (long *)mov_b);
 }
 
-int	*get_b_mov(long *stack_b)
+long	*get_b_mov(long *stack_b)
 {
-	int	i;
-	int	size;
-	int	*mov_b;
+	int		i;
+	int		size;
+	long	*mov_b;
 
 	i = 0;
 	size = stacksize(stack_b);
-	mov_b = (int *)malloc(sizeof(int) * size);
+	mov_b = (int *)malloc(sizeof(long) * size);
 	while (i < size)
 	{
 		if (i <= size / 2)
@@ -63,7 +46,7 @@ int	*get_b_mov(long *stack_b)
 	return (mov_b);
 }
 
-int	*get_a_mov(long *stack_a, long *stack_b)
+long	*get_a_mov(long *stack_a, long *stack_b)
 {
 	int	size;
 	int	*mov_a;
@@ -102,7 +85,7 @@ int	where_to_put_val(long *stack_a, long value)
 		return (-(size - i));
 }
 
-int	best_elem_to_mov(int *mov_a, int *mov_b, int size)
+int	pick_elem(t_optim_info *optim_info, int size)
 {
 	int	i;
 	int	min_idx;
@@ -112,10 +95,10 @@ int	best_elem_to_mov(int *mov_a, int *mov_b, int size)
 	min_idx = INT_MAX;
 	while (i < size)
 	{
-		if (mov_a[i] * mov_b[i] > 0)
-			temp = ft_abs(mov_a[i] - mov_b[i]);
-		if (mov_a[i] * mov_b[i] <= 0)
-			temp = ft_abs(mov_a[i]) + ft_abs(mov_b[i]);
+		if (optim_info->mov_a[i] * optim_info->mov_b[i] > 0)
+			temp = ft_abs(optim_info->mov_a[i] - optim_info->mov_b[i]);
+		if (optim_info->mov_a[i] * optim_info->mov_b[i] <= 0)
+			temp = ft_abs(optim_info->mov_a[i]) + ft_abs(optim_info->mov_b[i]);
 		min_idx = ft_min(temp, min_idx);
 	}
 	return (min_idx);
