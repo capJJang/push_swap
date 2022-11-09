@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:09 by segan             #+#    #+#             */
-/*   Updated: 2022/11/07 13:22:43 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/09 18:44:35 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ int	main(int argc, char *argv[])
 	stack_a = parse_argv(argc, argv);
 	validation(stack_a);
 	stack_b = create_stack(stack_a);
+	make_lis(stack_a, stack_b);
+	printf("\n");
+	pa_with_optim(stack_a, stack_b);
 	for (size_t i = 0; stack_a[i] != END; i++)
 		printf ("%ld\t\t %ld\n", stack_a[i], stack_b[i]);
-	printf("\n\n");
-	make_lis(stack_a, stack_b);
-	pa_with_optim(stack_a, stack_b);
-	printf("\n\n");
 	free(stack_a);
 	free(stack_b);
 	return (0);

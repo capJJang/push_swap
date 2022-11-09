@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/11/08 16:44:03 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/09 13:55:15 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ long	*get_a_mov(long *stack_a, long *stack_b);
 int		where_to_put_val(long *stack_a, long value);
 int		pick_elem(t_optim_info *optim_info, int size);
 void	optim_rotate(long *stack_a, long *stack_b, t_optim_info *optim_info);
+void	optim_rotate2(long *stack_a, long *stack_b, t_optim_info *optim_info);
 
 #endif

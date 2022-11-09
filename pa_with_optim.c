@@ -6,25 +6,29 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/08 18:38:30 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/09 18:21:16 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	pa_with_optim(long *stack_a, long *stack_b)
 {
 	t_optim_info	*optim_info;
 
 	optim_info = (t_optim_info *)malloc(sizeof(t_optim_info));
-	while (*stack_b == LONG_MIN)
+	while (*stack_b != LONG_MIN)
 	{
 		optim_info->mov_b = get_b_mov(stack_b);
 		optim_info->mov_a = get_a_mov(stack_a, stack_b);
 		optim_info->min_mov_idx = pick_elem(optim_info, stacksize(stack_b));
-		optim_roate(stack_a, stack_b, optim_info);
-		real_pa(stack_a, stack_b, optim_info);
+		optim_rotate(stack_a, stack_b, optim_info);
+		pa(stack_a, stack_b);
 	}
+	pull_min_val_to_top(stack_a);
+	free(optim_info);
+	optim_info = NULL;
 }
 
 long	*get_b_mov(long *stack_b)
@@ -35,30 +39,34 @@ long	*get_b_mov(long *stack_b)
 
 	i = 0;
 	size = stacksize(stack_b);
-	mov_b = (int *)malloc(sizeof(long) * size);
+	mov_b = (long *)malloc(sizeof(long) * size);
 	while (i < size)
 	{
 		if (i <= size / 2)
 			mov_b[i] = i;
 		else
 			mov_b[i] = -(size - i);
+		i++;
 	}
 	return (mov_b);
 }
 
 long	*get_a_mov(long *stack_a, long *stack_b)
 {
-	int	size;
-	int	*mov_a;
-	int	i;
-	int	count;
+	int		size;
+	long	*mov_a;
+	int		i;
+	int		count;
 
 	count = 0;
 	i = 0;
 	size = stacksize(stack_b);
-	mov_a = (int *)malloc(sizeof(int) * size);
+	mov_a = (long *)malloc(sizeof(long) * size);
 	while (i < size)
+	{
 		mov_a[i] = where_to_put_val(stack_a, stack_b[i]);
+		i++;
+	}
 	return (mov_a);
 }
 
@@ -73,12 +81,16 @@ int	where_to_put_val(long *stack_a, long value)
 	i = 0;
 	while (i < size)
 	{
+		if ((state == 1) && (value < stack_a[i]))
+			break ;
+		if ((state == 1) && (value > stack_a[i]))
+			state = 0;
 		if (value > stack_a[i])
 			state = 1;
-		if ((state == 1) && (stack_a[i] < value))
-			break ;
 		i++;
 	}
+	if (i == size)
+		i--;
 	if (i <= size / 2)
 		return (i);
 	else
@@ -89,9 +101,11 @@ int	pick_elem(t_optim_info *optim_info, int size)
 {
 	int	i;
 	int	min_idx;
+	int	min_val;
 	int	temp;
 
 	i = 0;
+	min_val = INT_MAX;
 	min_idx = INT_MAX;
 	while (i < size)
 	{
@@ -99,7 +113,12 @@ int	pick_elem(t_optim_info *optim_info, int size)
 			temp = ft_abs(optim_info->mov_a[i] - optim_info->mov_b[i]);
 		if (optim_info->mov_a[i] * optim_info->mov_b[i] <= 0)
 			temp = ft_abs(optim_info->mov_a[i]) + ft_abs(optim_info->mov_b[i]);
-		min_idx = ft_min(temp, min_idx);
+		if (temp == ft_min(min_val, temp))
+		{
+			min_val = temp;
+			min_idx = i;
+		}
+		i++;
 	}
 	return (min_idx);
 }
