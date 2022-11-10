@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/09 19:32:44 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/10 20:44:41 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@ void	pa_with_optim(long *stack_a, long *stack_b)
 		optim_info->mov_b = get_b_mov(stack_b);
 		optim_info->mov_a = get_a_mov(stack_a, stack_b);
 		optim_info->min_mov_idx = pick_elem(optim_info, stacksize(stack_b));
-		optim_rotate(stack_a, stack_b, optim_info);
+		printf("-------------------------------------------\n");
+		printf("target : %ld\n", stack_b[optim_info->min_mov_idx]);
+ 		optim_rotate(stack_a, stack_b, optim_info);
 		pa(stack_a, stack_b);
+		for (size_t i = 0; stack_a[i] != END; i++)
+		{
+			if (stack_a[i] != LONG_MIN)
+				printf("%ld \t", stack_a[i]);
+			if (stack_b[i] != LONG_MIN)
+				printf("%ld", stack_b[i]);
+			printf("\n");
+		}
+		printf("-------------------------------------------\n");
 	}
 	pull_min_val_to_top(stack_a);
 	free(optim_info);
@@ -83,13 +94,15 @@ int	where_to_put_val(long *stack_a, long value)
 	{
 		if ((state == 1) && (value < stack_a[i]))
 			break ;
+		if ((state == 1) && (stack_a[i - 1] > stack_a[i]))
+			break ;
 		if (value > stack_a[i])
 			state = 1;
 		i++;
 	}
-	if (state == 1)
+	if (state == 1 && i == size)
 		i = 0;
-	if (i == size)
+	else if (i == size)
 		i--;
 	if (i <= size / 2)
 		return (i);
@@ -97,7 +110,7 @@ int	where_to_put_val(long *stack_a, long value)
 		return (-(size - i));
 }
 
-int	pick_elem(t_optim_info *optim_info, int size)
+int	pick_elem(t_optim_info *info, int size)
 {
 	int	i;
 	int	min_idx;
@@ -109,10 +122,10 @@ int	pick_elem(t_optim_info *optim_info, int size)
 	min_idx = INT_MAX;
 	while (i < size)
 	{
-		if (optim_info->mov_a[i] * optim_info->mov_b[i] > 0)
-			temp = ft_abs(optim_info->mov_a[i] - optim_info->mov_b[i]);
-		if (optim_info->mov_a[i] * optim_info->mov_b[i] <= 0)
-			temp = ft_abs(optim_info->mov_a[i]) + ft_abs(optim_info->mov_b[i]);
+		if (info->mov_a[i] * info->mov_b[i] > 0)
+			temp = ft_min(ft_abs(info->mov_a[i]), ft_abs(info->mov_b[i]));
+		if (info->mov_a[i] * info->mov_b[i] <= 0)
+			temp = ft_abs(info->mov_a[i]) + ft_abs(info->mov_b[i]);
 		if (temp == ft_min(min_val, temp))
 		{
 			min_val = temp;
