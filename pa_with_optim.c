@@ -6,12 +6,11 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/10 20:44:41 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 16:45:39 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	pa_with_optim(long *stack_a, long *stack_b)
 {
@@ -23,19 +22,8 @@ void	pa_with_optim(long *stack_a, long *stack_b)
 		optim_info->mov_b = get_b_mov(stack_b);
 		optim_info->mov_a = get_a_mov(stack_a, stack_b);
 		optim_info->min_mov_idx = pick_elem(optim_info, stacksize(stack_b));
-		printf("-------------------------------------------\n");
-		printf("target : %ld\n", stack_b[optim_info->min_mov_idx]);
- 		optim_rotate(stack_a, stack_b, optim_info);
+		optim_rotate(stack_a, stack_b, optim_info);
 		pa(stack_a, stack_b);
-		for (size_t i = 0; stack_a[i] != END; i++)
-		{
-			if (stack_a[i] != LONG_MIN)
-				printf("%ld \t", stack_a[i]);
-			if (stack_b[i] != LONG_MIN)
-				printf("%ld", stack_b[i]);
-			printf("\n");
-		}
-		printf("-------------------------------------------\n");
 	}
 	pull_min_val_to_top(stack_a);
 	free(optim_info);
@@ -123,7 +111,8 @@ int	pick_elem(t_optim_info *info, int size)
 	while (i < size)
 	{
 		if (info->mov_a[i] * info->mov_b[i] > 0)
-			temp = ft_min(ft_abs(info->mov_a[i]), ft_abs(info->mov_b[i]));
+			temp = ft_min(ft_abs(info->mov_a[i]), ft_abs(info->mov_b[i])) + \
+			ft_abs(info->mov_a[i] - info->mov_b[i]);
 		if (info->mov_a[i] * info->mov_b[i] <= 0)
 			temp = ft_abs(info->mov_a[i]) + ft_abs(info->mov_b[i]);
 		if (temp == ft_min(min_val, temp))
