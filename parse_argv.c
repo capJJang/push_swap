@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:14:56 by segan             #+#    #+#             */
-/*   Updated: 2022/10/29 04:50:22 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:13:27 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long	*convert_arr(char **argv)
 
 	i = 0;
 	len = measure_column(argv);
-	ret = (long *)malloc(sizeof(long) * (len + 1));
+	ret = malloc_with_null_protection(sizeof(long), (len + 1));
 	while (argv[i])
 	{
 		ret[i] = ft_atol(argv[i]);
@@ -70,7 +70,7 @@ long	*parse_argv(int argc, char **argv)
 	}
 	else if (argc >= 3)
 	{
-		ret = (long *)malloc(sizeof(long) * argc);
+		ret = malloc_with_null_protection(sizeof(long), argc);
 		while (i < argc - 1)
 		{
 			ret[i] = ft_atol(argv[i + 1]);

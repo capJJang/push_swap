@@ -6,12 +6,11 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/11/10 20:33:03 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:11:36 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 long	*get_real_lis(long *lis_index, long *dp, long *stack_a)
 {
@@ -24,7 +23,7 @@ long	*get_real_lis(long *lis_index, long *dp, long *stack_a)
 	i = -1;
 	max = 0;
 	size = stacksize(stack_a);
-	real_lis = (long *)malloc(sizeof(long) * (size + 1));
+	real_lis = malloc_with_null_protection(sizeof(long), (size + 1));
 	while (++i < size)
 	{
 		if (dp[i] > max)
@@ -51,8 +50,8 @@ long	*get_lis(long *stack_a)
 	long	*dp;
 
 	size = stacksize(stack_a);
-	lis_index = (long *)malloc(sizeof(long) * size);
-	dp = (long *)malloc(sizeof(long) * (size + 1));
+	lis_index = malloc_with_null_protection(sizeof(long), size);
+	dp = malloc_with_null_protection(sizeof(long), (size + 1));
 	i = -1;
 	while (++i < size)
 	{

@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:29:52 by segan             #+#    #+#             */
-/*   Updated: 2022/11/11 16:45:39 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:12:47 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	pa_with_optim(long *stack_a, long *stack_b)
 	t_optim_info	*optim_info;
 
 	optim_info = (t_optim_info *)malloc(sizeof(t_optim_info));
+	if (!optim_info)
+		return (malloc_error);
 	while (*stack_b != LONG_MIN)
 	{
 		optim_info->mov_b = get_b_mov(stack_b);
@@ -60,7 +62,7 @@ long	*get_a_mov(long *stack_a, long *stack_b)
 	count = 0;
 	i = 0;
 	size = stacksize(stack_b);
-	mov_a = (long *)malloc(sizeof(long) * size);
+	mov_a = malloc_with_null_protection(sizeof(long) * size);
 	while (i < size)
 	{
 		mov_a[i] = where_to_put_val(stack_a, stack_b[i]);

@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:10:58 by segan             #+#    #+#             */
-/*   Updated: 2022/11/10 16:15:25 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:06:01 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ int	ft_abs(int a)
 	if (a < 0)
 		return (-a);
 	return (a);
+}
+
+long	*malloc_with_null_protection(int size, int count)
+{
+	long	*ret;
+
+	ret = (long *)malloc(size * count);
+	if (!ret)
+		return (malloc_error());
+	return (ret);
 }

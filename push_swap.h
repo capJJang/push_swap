@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/11/09 13:55:15 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:09:32 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int		where_to_put_val(long *stack_a, long value);
 int		pick_elem(t_optim_info *optim_info, int size);
 void	optim_rotate(long *stack_a, long *stack_b, t_optim_info *optim_info);
 void	optim_rotate2(long *stack_a, long *stack_b, t_optim_info *optim_info);
+long	*malloc_with_null_protection(int size, int count);
+long	*malloc_error(void);
 
 #endif
