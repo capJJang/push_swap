@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:55:12 by segan             #+#    #+#             */
-/*   Updated: 2022/11/11 17:09:00 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/12 22:06:18 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	print_error(void)
 }
 
 long	*malloc_error(void)
+{
+	write(1, "Malloc failed\n", 14);
+	exit(-1);
+}
+
+void	struct_malloc_error(void)
 {
 	write(1, "Malloc failed\n", 14);
 	exit(-1);
