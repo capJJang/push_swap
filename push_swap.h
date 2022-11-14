@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:37 by segan             #+#    #+#             */
-/*   Updated: 2022/11/12 22:06:34 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/13 23:36:28 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ void	optim_rotate2(long *stack_a, long *stack_b, t_optim_info *optim_info);
 long	*malloc_with_null_protection(int size, int count);
 long	*malloc_error(void);
 void	struct_malloc_error(void);
+void	sort_under_five(long *stack_a, long *stack_b);
+void	sort_under_three(long *stack_a, long *stack_b);
 
 #endif
