@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:32:55 by segan             #+#    #+#             */
-/*   Updated: 2022/11/11 17:11:36 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/14 14:21:45 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	pull_min_val_to_top(long *stack)
 	min = INT_MAX;
 	while (stack[++i] != END)
 	{
+		if (stack[i] == LONG_MIN)
+			break ;
 		if (stack[i] < min)
 		{
 			min = stack[i];

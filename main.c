@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:54:09 by segan             #+#    #+#             */
-/*   Updated: 2022/11/14 00:55:30 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/14 13:50:01 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int	main(int argc, char *argv[])
 	validation(stack_a);
 	stack_b = create_stack(stack_a);
 	if (stacksize(stack_a) == 3)
-		sort_under_three(stack_a, stack_b);
-	if (stacksize(stack_a) == 5)
+		sort_three(stack_a);
+	else if (stacksize(stack_a) <= 5 && stacksize(stack_a) >= 4)
+	{
 		sort_under_five(stack_a, stack_b);
+		exit(0);
+	}
 	make_lis(stack_a, stack_b);
 	pa_with_optim(stack_a, stack_b);
-	free(stack_a);
-	free(stack_b);
+	free_arr(stack_a, stack_b);
 	return (0);
 }
